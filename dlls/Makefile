@@ -49,7 +49,7 @@ PM_SHARED_OBJDIR=$(PM_SHARED_SRCDIR)/linux_obj
 GAME_SHARED_OBJDIR=$(GAME_SHARED_SRCDIR)/linux_obj
 
 BASE_CFLAGS=	-Dstricmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp \
-		-DCLIENT_WEAPONS -fpermissive
+		-DCLIENT_WEAPONS -fpermissive -Wl,--no-undefined 
 
 #safe optimization
 #CFLAGS=$(BASE_CFLAGS)  -Wall -Wno-conversion -march=$(ARCH) -O1
