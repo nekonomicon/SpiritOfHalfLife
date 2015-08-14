@@ -22,11 +22,14 @@
 extern enginefuncs_t g_engfuncs;
 
 // The actual engine callbacks
+//g-cont. see override functions in util.cpp
+//#define PRECACHE_MODEL	(*g_engfuncs.pfnPrecacheModel)
+//#define PRECACHE_SOUND	(*g_engfuncs.pfnPrecacheSound)
+//#define SET_MODEL		(*g_engfuncs.pfnSetModel)
+//#define PRECACHE_EVENT	(*g_engfuncs.pfnPrecacheEvent)
+
 #define GETPLAYERUSERID (*g_engfuncs.pfnGetPlayerUserId)
-#define PRECACHE_MODEL	(*g_engfuncs.pfnPrecacheModel)
-#define PRECACHE_SOUND	(*g_engfuncs.pfnPrecacheSound)
 #define PRECACHE_GENERIC	(*g_engfuncs.pfnPrecacheGeneric)
-#define SET_MODEL		(*g_engfuncs.pfnSetModel)
 #define MODEL_INDEX		(*g_engfuncs.pfnModelIndex)
 #define MODEL_FRAMES	(*g_engfuncs.pfnModelFrames)
 #define SET_SIZE		(*g_engfuncs.pfnSetSize)
@@ -69,9 +72,11 @@ extern enginefuncs_t g_engfuncs;
 #define RANDOM_FLOAT	(*g_engfuncs.pfnRandomFloat)
 #define GETPLAYERAUTHID	(*g_engfuncs.pfnGetPlayerAuthId)
 
-inline void MESSAGE_BEGIN( int msg_dest, int msg_type, const float *pOrigin = NULL, edict_t *ed = NULL ) {
+inline void MESSAGE_BEGIN( int msg_dest, int msg_type, const float *pOrigin = NULL, edict_t *ed = NULL )
+{
 	(*g_engfuncs.pfnMessageBegin)(msg_dest, msg_type, pOrigin, ed);
 }
+
 #define MESSAGE_END		(*g_engfuncs.pfnMessageEnd)
 #define WRITE_BYTE		(*g_engfuncs.pfnWriteByte)
 #define WRITE_CHAR		(*g_engfuncs.pfnWriteChar)
@@ -125,34 +130,23 @@ inline void *GET_PRIVATE( edict_t *pent )
 #define IS_MAP_VALID			(*g_engfuncs.pfnIsMapValid)
 #define NUMBER_OF_ENTITIES		(*g_engfuncs.pfnNumberOfEntities)
 #define IS_DEDICATED_SERVER		(*g_engfuncs.pfnIsDedicatedServer)
-
-#define PRECACHE_EVENT			(*g_engfuncs.pfnPrecacheEvent)
 #define PLAYBACK_EVENT_FULL		(*g_engfuncs.pfnPlaybackEvent)
-
 #define ENGINE_SET_PVS			(*g_engfuncs.pfnSetFatPVS)
 #define ENGINE_SET_PAS			(*g_engfuncs.pfnSetFatPAS)
-
-#define ENGINE_CHECK_VISIBILITY (*g_engfuncs.pfnCheckVisibility)
-
 #define DELTA_SET				( *g_engfuncs.pfnDeltaSetField )
 #define DELTA_UNSET				( *g_engfuncs.pfnDeltaUnsetField )
 #define DELTA_ADDENCODER		( *g_engfuncs.pfnDeltaAddEncoder )
 #define ENGINE_CURRENT_PLAYER   ( *g_engfuncs.pfnGetCurrentPlayer )
-
 #define	ENGINE_CANSKIP			( *g_engfuncs.pfnCanSkipPlayer )
-
 #define DELTA_FINDFIELD			( *g_engfuncs.pfnDeltaFindField )
 #define DELTA_SETBYINDEX		( *g_engfuncs.pfnDeltaSetFieldByIndex )
 #define DELTA_UNSETBYINDEX		( *g_engfuncs.pfnDeltaUnsetFieldByIndex )
-
 #define ENGINE_GETPHYSINFO		( *g_engfuncs.pfnGetPhysicsInfoString )
-
 #define ENGINE_SETGROUPMASK		( *g_engfuncs.pfnSetGroupMask )
 
+#define ENGINE_CHECK_VISIBILITY	(*g_engfuncs.pfnCheckVisibility)
 #define ENGINE_INSTANCE_BASELINE ( *g_engfuncs.pfnCreateInstancedBaseline )
-
 #define ENGINE_FORCE_UNMODIFIED	( *g_engfuncs.pfnForceUnmodified )
-
 #define PLAYER_CNX_STATS		( *g_engfuncs.pfnGetPlayerStats )
 
 #endif		//ENGINECALLBACK_H
